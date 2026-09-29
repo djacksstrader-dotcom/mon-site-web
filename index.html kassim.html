@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KASSIM SHOP | Boutique Streetwear, Sacs & Chaussures Tendance</title>
+  <meta name="description" content="Commandez directement vos sacs à dos Eastpak, sabots tendance Chrome Hearts/Boston, claquettes Lacoste et jeans baggy streetwear chez KASSIM SHOP. Livraison rapide.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#" class="logo" id="logoBtn">
+        <div class="logo-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <div>KASSIM <span>SHOP</span></div>
+      </a>
+
+      <!-- Search Input -->
+      <div class="header-search">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un sac, sabot, jean, taille...">
+      </div>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <button class="btn-admin" id="openAdminBtn">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Admin</span>
+        </button>
+
+        <button class="btn-icon" id="openCartBtn" title="Voir le panier">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="cartCountBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="container">
+
+    <!-- HERO BANNER -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-fire"></i> Collection Kassim 2026
+        </div>
+        <h1 class="hero-title">Le meilleur du Streetwear & Accessoires</h1>
+        <p class="hero-subtitle">Parcourez nos articles d'exception et passez votre commande directement en ligne. Des prix imbattables enregistrés en base de données.</p>
+        
+        <div class="hero-badges">
+          <div class="hero-badge-item">
+            <i class="fa-solid fa-shoe-prints"></i> Sabots & Claquettes: <strong>3 000 F</strong>
+          </div>
+          <div class="hero-badge-item">
+            <i class="fa-solid fa-suitcase"></i> Sacs à dos: <strong>4 000 F</strong>
+          </div>
+          <div class="hero-badge-item">
+            <i class="fa-solid fa-vest"></i> Jeans & Pantalons: <strong>6 000 F</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES & CONTROLS -->
+    <section class="controls-section">
+      <!-- Category Pills -->
+      <div class="categories-scroll" id="categoryPills">
+        <button class="category-pill active" data-category="all">
+          <i class="fa-solid fa-border-all"></i> Tous les articles
+        </button>
+        <button class="category-pill" data-category="sacs">
+          <i class="fa-solid fa-bag-shopping"></i> Sacs à dos (4 000 F)
+        </button>
+        <button class="category-pill" data-category="chaussures">
+          <i class="fa-solid fa-shoe-prints"></i> Chaussures & Sabots (3 000 F)
+        </button>
+        <button class="category-pill" data-category="pantalons">
+          <i class="fa-solid fa-vest"></i> Jeans & Pantalons (6 000 F)
+        </button>
+        <button class="category-pill" data-category="vetements">
+          <i class="fa-solid fa-shirt"></i> Vêtements (4 000 F)
+        </button>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="results-count" id="resultsCount">
+          Affichage de <span id="countNum">14</span> articles disponibles
+        </div>
+
+        <select id="sortSelect" class="sort-select">
+          <option value="default">Tri par défaut</option>
+          <option value="price-asc">Prix : du moins cher au plus cher</option>
+          <option value="price-desc">Prix : du plus cher au moins cher</option>
+          <option value="name">Nom du produit (A-Z)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="products-grid" id="productsGrid">
+      <!-- Les produits seront injectés dynamiquement par app.js -->
+    </section>
+
+  </main>
+
+  <!-- CART DRAWER OVERLAY -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3><i class="fa-solid fa-cart-shopping"></i> Mon Panier</h3>
+        <button class="cart-close-btn" id="closeCartBtn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-items-container" id="cartItemsContainer">
+        <!-- Articles du panier -->
+      </div>
+
+32        <div class="cart-summary-row">
+          <span>Sous-total</span>
+          <span id="cartSubtotal">0 F</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Livraison (Estimation)</span>
+          <span id="cartDelivery">1 000 F</span>
+        </div>
+        <div class="cart-summary-row total">
+          <span>Total à payer</span>
+          <span id="cartGrandTotal">0 F</span>
+        </div>
+
+        <button class="btn-checkout" id="checkoutBtn">
+          <span>Passer la commande</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeProductModalBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="product-detail-grid" id="productDetailContent">
+        <!-- Injecté dynamiquement -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL (Passer Commande) -->
+  <div class="modal-overlay" id="checkoutModalOverlay">
+    <div class="modal-card" style="max-width: 600px;">
+      <button class="modal-close-btn" id="closeCheckoutModalBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="checkout-modal-content">
+        <h2 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-truck-fast" style="color: var(--primary);"></i> Finaliser votre Commande</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">
+          Entrez vos informations de livraison. La commande sera instantanément enregistrée dans la base de données.
+        </p>
+
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label class="form-label" for="fullname">Nom & Prénom(s) *</label>
+            <input type="text" id="fullname" class="form-input" placeholder="Ex: Jean Kouassi" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Numéro de Téléphone (WhatsApp) *</label>
+            <input type="tel" id="phone" class="form-input" placeholder="Ex: 0701020304" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="city">Ville / Commune *</label>
+              <input type="text" id="city" class="form-input" value="Abidjan" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="address">Quartier / Adresse précise *</label>
+              <input type="text" id="address" class="form-input" placeholder="Ex: Cocody Angré 8ème Tranche" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="note">Instructions de livraison (Optionnel)</label>
+            <input type="text" id="note" class="form-input" placeholder="Point de repère ou heure préférée">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mode de Paiement</label>
+            <div style="background: var(--bg-card); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.75rem; font-weight: 600;">
+              <i class="fa-solid fa-money-bill-wave" style="color: var(--accent-emerald);"></i>
+              Paiement à la livraison (Espèces ou Mobile Money)
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Montant Total</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary); font-family: var(--font-heading);" id="checkoutModalTotal">0 F</div>
+            </div>
+
+            <button type="submit" class="btn-checkout" style="margin-top: 0; width: auto; padding: 0.85rem 1.75rem;">
+              <span>Confirmer & Commander</span>
+              <i class="fa-solid fa-check"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER RECEIPT / CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="receiptModalOverlay">
+    <div class="modal-card" style="max-width: 550px;">
+      <div class="receipt-card">
+        <div class="receipt-icon">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2>Commande Validée !</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Votre commande a été enregistrée avec succès dans la base de données de Kassim Shop.
+        </p>
+
+        <div class="receipt-code" id="receiptCode">KASS-000000</div>
+
+        <div id="receiptSummary">
+          <!-- Détails de la commande reçue -->
+        </div>
+
+        <div class="receipt-actions">
+          <a href="#" id="sendWhatsAppBtn" target="_blank" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i>
+            Envoyer sur WhatsApp
+          </a>
+          <button class="btn-secondary" id="closeReceiptBtn">
+            Fermer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD MODAL -->
+  <div class="modal-overlay" id="adminModalOverlay">
+    <div class="modal-card admin-card">
+      <button class="modal-close-btn" id="closeAdminBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="admin-header">
+        <div>
+          <h2><i class="fa-solid fa-user-shield" style="color: var(--primary);"></i> Tableau de Bord - KASSIM SHOP</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Gestion de la base de données des commandes et du stock</p>
+        </div>
+
+        <button class="btn-secondary" id="resetDbBtn" style="color: var(--accent-rose); border-color: rgba(244, 63, 94, 0.3);">
+          <i class="fa-solid fa-rotate"></i> Réinitialiser la DB
+        </button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="admin-stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Chiffre d'Affaires</div>
+          <div class="stat-value" id="statRevenue">0 F</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Total Commandes</div>
+          <div class="stat-value" id="statTotalOrders" style="color: var(--text-main);">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Commandes En Attente</div>
+          <div class="stat-value" id="statPendingOrders" style="color: var(--primary);">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Commandes Livrées</div>
+          <div class="stat-value" id="statCompletedOrders" style="color: var(--accent-emerald);">0</div>
+        </div>
+      </div>
+
+      <!-- Admin Filter & Search -->
+      <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <input type="text" id="adminSearchInput" class="search-input" placeholder="Rechercher une commande, client, téléphone..." style="max-width: 350px;">
+        
+        <select id="adminStatusFilter" class="sort-select">
+          <option value="all">Tous les statuts</option>
+          <option value="En attente">En attente</option>
+          <option value="Confirmée">Confirmée</option>
+          <option value="En cours de livraison">En cours de livraison</option>
+          <option value="Livrée">Livrée</option>
+          <option value="Annulée">Annulée</option>
+        </select>
+      </div>
+
+      <!-- Orders Table -->
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Client</th>
+              <th>Téléphone</th>
+              <th>Adresse</th>
+              <th>Articles</th>
+              <th>Total</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersTableBody">
+            <!-- Injecté par app.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 <span>KASSIM SHOP</span>. Tous droits réservés. Base de données synchronisée.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
